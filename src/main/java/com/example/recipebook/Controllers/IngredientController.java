@@ -1,7 +1,9 @@
-package com.example.recipebook.Controller.First;
+package com.example.recipebook.Controllers;
 
-import com.example.recipebook.models.Ingredient;
-import com.example.recipebook.services.IngredientService;
+
+import com.example.recipebook.Models.Ingredient;
+import com.example.recipebook.Services.IngredientService;
+;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +19,6 @@ public class IngredientController {
     }
 
     @GetMapping("get/{ingredientId}")
-    @ResponseBody
     public ResponseEntity getUser(@PathVariable Long ingredientId) {
         Ingredient ingredient = ingredientService.getIngredientId(ingredientId);
         if(ingredient == null) {
@@ -27,7 +28,6 @@ public class IngredientController {
     }
 
     @PostMapping
-    @ResponseBody
     public ResponseEntity createUser(@RequestBody Ingredient ingredient) {
         Ingredient createdIngredient = ingredientService.addIngredient(ingredient);
         return ResponseEntity.ok(createdIngredient);

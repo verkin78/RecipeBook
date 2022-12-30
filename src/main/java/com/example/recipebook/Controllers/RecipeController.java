@@ -1,7 +1,8 @@
-package com.example.recipebook.Controller.First;
-import com.example.recipebook.models.Recipe;
-import com.example.recipebook.services.RecipeService;
-import org.apache.coyote.Response;
+package com.example.recipebook.Controllers;
+
+import com.example.recipebook.Models.Recipe;
+import com.example.recipebook.Services.RecipeService;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,6 @@ public class RecipeController {
     }
 
     @GetMapping("get/ {recipeId}")
-    @ResponseBody
     public ResponseEntity getRecipeId(@PathVariable Long recipeId) {
         Recipe recipe = recipeService.getRecipeId(recipeId);
         if(recipe == null) {
@@ -27,7 +27,6 @@ public class RecipeController {
     }
 
     @PostMapping("create")
-    @ResponseBody
     public ResponseEntity createRecipe (@RequestBody Recipe recipe) {
         Recipe createdRecipe = recipeService.createRecipe(recipe);
         return ResponseEntity.ok(createdRecipe);
