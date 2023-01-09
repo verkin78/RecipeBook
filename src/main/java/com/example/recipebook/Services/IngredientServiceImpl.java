@@ -32,4 +32,13 @@ public class IngredientServiceImpl implements IngredientService{
         return false;
     }
 
+    @Override
+    public Ingredient deleteIngredient(Long ingredientId) {
+        return ingredients.remove(ingredientId);
+    }
+
+    @Override
+    public Map<Long, Ingredient> getAllIngredients() {
+        return ingredients;
+    }
 }
