@@ -47,10 +47,7 @@ public class RecipeServiceImpl implements RecipeService {
         return false;
     }
 
-    @Override
-    public Map<Long, Recipe> getAllRecipes(Recipe recipe) {
-        return null;
-    }
+
 
     @Override
     public Map<Long, Recipe> getAllRecipes() {
