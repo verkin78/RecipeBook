@@ -17,7 +17,7 @@ public class IngredientController {
 
     }
 
-    @GetMapping("get/{ingredientId}")
+    @GetMapping("/{ingredientId}")
     public ResponseEntity getUser(@PathVariable Long ingredientId) {
         Ingredient ingredient = ingredientService.getIngredientId(ingredientId);
         if(ingredient == null) {
@@ -26,7 +26,7 @@ public class IngredientController {
         return ResponseEntity.ok(ingredient);
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/allingredients")
     public ResponseEntity getAllIngredients() {
         return ResponseEntity.ok(ingredientService.getAllIngredients());
     }
@@ -48,5 +48,5 @@ public class IngredientController {
         return ResponseEntity.ok(ingredientService.setIngredientById(ingredientId, ingredient));
     }
 
-    
+
 }

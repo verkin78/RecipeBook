@@ -17,7 +17,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("get/ {recipeId}")
+    @GetMapping("/{recipeId}")
     public ResponseEntity getRecipeId(@PathVariable Long recipeId) {
         Recipe recipe = recipeService.getRecipeId(recipeId);
         if(recipe == null) {
@@ -26,13 +26,13 @@ public class RecipeController {
         return ResponseEntity.ok(recipe);
     }
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResponseEntity createRecipe (@RequestBody Recipe recipe) {
         Recipe createdRecipe = recipeService.createRecipe(recipe);
         return ResponseEntity.ok(createdRecipe);
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/allrecipe")
     public ResponseEntity getAllIngredients() {
         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
