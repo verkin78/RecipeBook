@@ -32,4 +32,15 @@ public class RecipeServiceImpl implements RecipeService {
         }
         return false;
     }
+
+    @Override
+    public boolean deleteRecipe(Long recipeId) {
+        if (recipes.containsKey(recipeId)) {
+            recipes.remove(recipeId);
+            return true;
+        }
+        return false;
+    }
+
+
 }
