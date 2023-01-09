@@ -22,4 +22,14 @@ public class IngredientServiceImpl implements IngredientService{
     public Ingredient getIngredientId(Long ingredientId) {
         return ingredients.get(ingredientId);
     }
+
+    @Override
+    public boolean setIngredientById(Long ingredientId, Ingredient ingredient) {
+        if (ingredients.containsKey(ingredientId)) {
+            ingredients.put(ingredientId, ingredient);
+            return true;
+        }
+        return false;
+    }
+
 }
