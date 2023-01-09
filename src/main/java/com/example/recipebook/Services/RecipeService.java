@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface RecipeService {
     Recipe createRecipe(Recipe recipe);
     Recipe getRecipeId(Long recipeId);
+
+    boolean changeRecipeById(Long recipeId);
 }
