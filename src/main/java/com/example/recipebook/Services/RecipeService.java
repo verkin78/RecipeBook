@@ -13,7 +13,11 @@ public interface RecipeService {
 
     boolean changeRecipeById(Long recipeId);
 
+    boolean changeRecipeById(Long recipeId, Recipe recipe);
+
     boolean deleteRecipe(Long recipeId);
 
     Map<Long, Recipe> getAllRecipes(Recipe recipe);
+
+    Map<Long, Recipe> getAllRecipes();
 }

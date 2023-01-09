@@ -31,4 +31,20 @@ public class RecipeController {
         Recipe createdRecipe = recipeService.createRecipe(recipe);
         return ResponseEntity.ok(createdRecipe);
     }
+
+    @GetMapping("/get/all")
+    public ResponseEntity getAllIngredients() {
+        return ResponseEntity.ok(recipeService.getAllRecipes());
+    }
+
+    @DeleteMapping("/delete/{recipeId}")
+    public ResponseEntity deleteIngredient(@PathVariable Long recipeId) {
+        return ResponseEntity.ok(recipeService.deleteRecipe(recipeId));
+    }
+
+    @PutMapping("/change/{recipeId}")
+
+    public ResponseEntity changeIngredient(@PathVariable Long recipeId, @RequestBody Recipe recipe) {
+        return ResponseEntity.ok(recipeService.changeRecipeById(recipeId, recipe));
+    }
 }

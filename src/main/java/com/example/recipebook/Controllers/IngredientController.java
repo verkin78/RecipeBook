@@ -15,7 +15,6 @@ public class IngredientController {
     public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
 
-
     }
 
     @GetMapping("get/{ingredientId}")
@@ -27,9 +26,27 @@ public class IngredientController {
         return ResponseEntity.ok(ingredient);
     }
 
+    @GetMapping("/get/all")
+    public ResponseEntity getAllIngredients() {
+        return ResponseEntity.ok(ingredientService.getAllIngredients());
+    }
+
     @PostMapping
     public ResponseEntity createUser(@RequestBody Ingredient ingredient) {
         Ingredient createdIngredient = ingredientService.addIngredient(ingredient);
         return ResponseEntity.ok(createdIngredient);
     }
+
+    @DeleteMapping("/delete/{ingredientId}")
+    public ResponseEntity deleteIngredient(@PathVariable Long ingredientId) {
+        return ResponseEntity.ok(ingredientService.deleteIngredient(ingredientId));
+    }
+
+    @PutMapping("/change/{ingredientId}")
+
+    public ResponseEntity changeIngredient(@PathVariable Long ingredientId, @RequestBody Ingredient ingredient) {
+        return ResponseEntity.ok(ingredientService.setIngredientById(ingredientId, ingredient));
+    }
+
+    
 }

@@ -26,8 +26,13 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public boolean changeRecipeById(Long recipeId) {
+        return false;
+    }
+
+    @Override
+    public boolean changeRecipeById(Long recipeId, Recipe recipe) {
         if (recipes.containsKey(recipeId)) {
-            recipes.remove(recipeId);
+            recipes.remove(recipeId,recipe);
             return true;
         }
         return false;
@@ -44,6 +49,11 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Map<Long, Recipe> getAllRecipes(Recipe recipe) {
+        return null;
+    }
+
+    @Override
+    public Map<Long, Recipe> getAllRecipes() {
         return recipes;
     }
 }
