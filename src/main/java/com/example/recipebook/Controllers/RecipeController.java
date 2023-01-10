@@ -5,10 +5,12 @@ import com.example.recipebook.Services.RecipeService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Tag(name = "Рецепты", description = "действия, относящиеся к работе с рецептами")
 @RequestMapping("/recipe")
 public class RecipeController {
     private final RecipeService recipeService;
