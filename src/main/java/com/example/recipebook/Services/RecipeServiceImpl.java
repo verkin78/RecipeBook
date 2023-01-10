@@ -1,9 +1,7 @@
 package com.example.recipebook.Services;
 
 import com.example.recipebook.Models.Recipe;
-
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,9 +45,7 @@ public class RecipeServiceImpl implements RecipeService {
         return false;
     }
 
-
-
-    @Override
+   @Override
     public Map<Long, Recipe> getAllRecipes() {
         return recipes;
     }
