@@ -3,10 +3,10 @@ package com.example.recipebook.Controllers;
 import com.example.recipebook.Models.Recipe;
 import com.example.recipebook.Services.RecipeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.*;
 
 @RestController
 @RequestMapping("/recipe")
@@ -33,6 +33,9 @@ public class RecipeController {
     }
 
     @GetMapping("/allrecipe")
+    @Operation(description = "Показать список всех рецептов")
+    @ApiResponse(responseCode = "200",
+            description = "Найдены следующие рецепты")
     public ResponseEntity getAllIngredients() {
         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
@@ -43,7 +46,9 @@ public class RecipeController {
     }
 
     @PutMapping("{recipeId}")
-
+    @Operation(description = "Показать список всех рецептов")
+    @ApiResponse(responseCode = "200",
+            description = "Найдены следующие рецепты")
     public ResponseEntity changeIngredient(@PathVariable Long recipeId, @RequestBody Recipe recipe) {
         return ResponseEntity.ok(recipeService.changeRecipeById(recipeId, recipe));
     }

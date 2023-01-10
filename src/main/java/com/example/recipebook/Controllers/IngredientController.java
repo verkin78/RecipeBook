@@ -4,6 +4,8 @@ package com.example.recipebook.Controllers;
 import com.example.recipebook.Models.Ingredient;
 import com.example.recipebook.Services.IngredientService;
 ;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +16,6 @@ public class IngredientController {
 
     public IngredientController(IngredientService ingredientService) {
         this.ingredientService = ingredientService;
-
     }
 
     @GetMapping("/{ingredientId}")
@@ -27,6 +28,9 @@ public class IngredientController {
     }
 
     @GetMapping("/allingredients")
+    @Operation(description = "Показать ингредиенты")
+    @ApiResponse(responseCode = "200",
+            description = "Ингредиенты: ")
     public ResponseEntity getAllIngredients() {
         return ResponseEntity.ok(ingredientService.getAllIngredients());
     }
@@ -43,7 +47,9 @@ public class IngredientController {
     }
 
     @PutMapping("{ingredientId}")
-
+    @Operation(description = "Показать ингредиенты")
+    @ApiResponse(responseCode = "200",
+            description = "Ингредиенты: ")
     public ResponseEntity changeIngredient(@PathVariable Long ingredientId, @RequestBody Ingredient ingredient) {
         return ResponseEntity.ok(ingredientService.setIngredientById(ingredientId, ingredient));
     }
