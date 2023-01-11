@@ -2,12 +2,16 @@ package com.example.recipebook.Models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @AllArgsConstructor
+@NonNull
+@NoArgsConstructor
 public class Recipe {
-    private final String recipeName;
-    private final Integer kookTime;
-    private final Ingredient[] ingredients;
-    private final String[] kookSteps;
+    private  String recipeName;
+    private  Integer kookTime;
+    private  Ingredient[] ingredients;
+    private  String[] kookSteps;
 }
