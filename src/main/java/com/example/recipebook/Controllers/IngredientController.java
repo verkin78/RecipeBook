@@ -21,7 +21,10 @@ public class IngredientController {
     }
 
     @GetMapping("/{ingredientId}")
-    public ResponseEntity getUser(@PathVariable Long ingredientId) {
+    @Operation(description = "Найти ингредиент по номеру")
+    @ApiResponse(responseCode = "200",
+            description = "Найден ингредиент")
+    public ResponseEntity getIngredient(@PathVariable Long ingredientId) {
         Ingredient ingredient = ingredientService.getIngredientId(ingredientId);
         if(ingredient == null) {
             return ResponseEntity.notFound().build();
@@ -38,20 +41,26 @@ public class IngredientController {
     }
 
     @PostMapping
-    public ResponseEntity createUser(@RequestBody Ingredient ingredient) {
+    @Operation(description = "Добавить ингредиент")
+    @ApiResponse(responseCode = "200",
+            description = "Успешно!")
+    public ResponseEntity createШтпкувшуте(@RequestBody Ingredient ingredient) {
         Ingredient createdIngredient = ingredientService.addIngredient(ingredient);
         return ResponseEntity.ok(createdIngredient);
     }
 
     @DeleteMapping("{ingredientId}")
+    @Operation(description = "Удалить ингредиент")
+    @ApiResponse(responseCode = "200",
+            description = "Успешно")
     public ResponseEntity deleteIngredient(@PathVariable Long ingredientId) {
         return ResponseEntity.ok(ingredientService.deleteIngredient(ingredientId));
     }
 
     @PutMapping("{ingredientId}")
-    @Operation(description = "Показать ингредиенты")
+    @Operation(description = "Изменить ингредиент")
     @ApiResponse(responseCode = "200",
-            description = "Ингредиенты: ")
+            description = "Ингредиент изменён")
     public ResponseEntity changeIngredient(@PathVariable Long ingredientId, @RequestBody Ingredient ingredient) {
         return ResponseEntity.ok(ingredientService.setIngredientById(ingredientId, ingredient));
     }

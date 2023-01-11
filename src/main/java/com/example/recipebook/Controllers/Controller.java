@@ -5,10 +5,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Controller {
+
+
     @GetMapping("/")
     public String start() {
         return "Приложение запущено";
     }
+
+
+
     @GetMapping("/info")
     public String start1() {
         return "имя ученика: Вероника Якименко,\n" +

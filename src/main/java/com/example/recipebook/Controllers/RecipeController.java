@@ -20,6 +20,9 @@ public class RecipeController {
     }
 
     @GetMapping("/{recipeId}")
+    @Operation(description = "Найти рецепт по ид")
+    @ApiResponse(responseCode = "200",
+            description = "Найден рецепт")
     public ResponseEntity getRecipeId(@PathVariable Long recipeId) {
         Recipe recipe = recipeService.getRecipeId(recipeId);
         if(recipe == null) {
@@ -29,6 +32,9 @@ public class RecipeController {
     }
 
     @PostMapping("/create")
+    @Operation(description = "Создать рецепт")
+    @ApiResponse(responseCode = "200",
+            description = "Рецепт создан")
     public ResponseEntity createRecipe (@RequestBody Recipe recipe) {
         Recipe createdRecipe = recipeService.createRecipe(recipe);
         return ResponseEntity.ok(createdRecipe);
@@ -38,20 +44,23 @@ public class RecipeController {
     @Operation(description = "Показать список всех рецептов")
     @ApiResponse(responseCode = "200",
             description = "Найдены следующие рецепты")
-    public ResponseEntity getAllIngredients() {
+    public ResponseEntity getAllRecipes() {
         return ResponseEntity.ok(recipeService.getAllRecipes());
     }
 
     @DeleteMapping("{recipeId}")
-    public ResponseEntity deleteIngredient(@PathVariable Long recipeId) {
+    @Operation(description = "Удалить рецепт")
+    @ApiResponse(responseCode = "200",
+            description = "Рецепт удалён")
+    public ResponseEntity deleteRecipe(@PathVariable Long recipeId) {
         return ResponseEntity.ok(recipeService.deleteRecipe(recipeId));
     }
 
     @PutMapping("{recipeId}")
-    @Operation(description = "Показать список всех рецептов")
+    @Operation(description = "Найти рецепт по ид")
     @ApiResponse(responseCode = "200",
             description = "Найдены следующие рецепты")
-    public ResponseEntity changeIngredient(@PathVariable Long recipeId, @RequestBody Recipe recipe) {
+    public ResponseEntity changeRecipe(@PathVariable Long recipeId, @RequestBody Recipe recipe) {
         return ResponseEntity.ok(recipeService.changeRecipeById(recipeId, recipe));
     }
 }
