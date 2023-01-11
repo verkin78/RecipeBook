@@ -23,19 +23,18 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes.get(recipeId);
     }
 
-    @Override
-    public boolean changeRecipeById(Long recipeId) {
-        return false;
-    }
+
 
     @Override
     public boolean changeRecipeById(Long recipeId, Recipe recipe) {
         if (recipes.containsKey(recipeId)) {
-            recipes.remove(recipeId, recipe);
+            recipes.put(recipeId, recipe);
             return true;
         }
         return false;
     }
+
+
 
     @Override
     public boolean deleteRecipe(Long recipeId) {

@@ -9,7 +9,7 @@ public interface RecipeService {
     Recipe createRecipe(Recipe recipe);
     Recipe getRecipeId(Long recipeId);
 
-    boolean changeRecipeById(Long recipeId);
+
     boolean changeRecipeById(Long recipeId, Recipe recipe);
     boolean deleteRecipe(Long recipeId);
     Map<Long, Recipe> getAllRecipes();
