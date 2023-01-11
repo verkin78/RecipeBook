@@ -2,13 +2,14 @@ package com.example.recipebook.Services;
 
 import com.example.recipebook.Models.Recipe;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class RecipeServiceImpl implements RecipeService {
-    private static Long recipeId =0L;
-    Map<Long, Recipe> recipes = new HashMap<>();
+    private static Long recipeId = 0L;
+    private Map<Long, Recipe> recipes = new HashMap<>();
 
     @Override
     public Recipe createRecipe(Recipe recipe) {
@@ -30,7 +31,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public boolean changeRecipeById(Long recipeId, Recipe recipe) {
         if (recipes.containsKey(recipeId)) {
-            recipes.remove(recipeId,recipe);
+            recipes.remove(recipeId, recipe);
             return true;
         }
         return false;
@@ -45,7 +46,7 @@ public class RecipeServiceImpl implements RecipeService {
         return false;
     }
 
-   @Override
+    @Override
     public Map<Long, Recipe> getAllRecipes() {
         return recipes;
     }
