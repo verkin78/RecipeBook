@@ -9,7 +9,7 @@ import java.util.Map;
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private static Long recipeId = 0L;
-    private Map<Long, Recipe> recipes = new HashMap<>();
+    private static Map<Long, Recipe> recipes = new HashMap<>();
 
     @Override
     public Recipe createRecipe(Recipe recipe) {
