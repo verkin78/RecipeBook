@@ -10,6 +10,8 @@ public interface IngredientService {
     Ingredient getIngredientId(Long ingredientId);
 
     boolean setIngredientById(Long ingredientId, Ingredient ingredient);
+
     Ingredient deleteIngredient(Long ingredientId);
+
     Map<Long, Ingredient> getAllIngredients();
 }

@@ -7,10 +7,13 @@ import java.util.Map;
 @Service
 public interface RecipeService {
     Recipe createRecipe(Recipe recipe);
+
     Recipe getRecipeId(Long recipeId);
 
 
     boolean changeRecipeById(Long recipeId, Recipe recipe);
+
     boolean deleteRecipe(Long recipeId);
+
     Map<Long, Recipe> getAllRecipes();
 }

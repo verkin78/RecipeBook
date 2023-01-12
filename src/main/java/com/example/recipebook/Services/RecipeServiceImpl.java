@@ -25,8 +25,6 @@ public class RecipeServiceImpl implements RecipeService {
         return recipes.get(recipeId);
     }
 
-
-
     @Override
     @Nullable
     public boolean changeRecipeById(Long recipeId, Recipe recipe) {
@@ -36,8 +34,6 @@ public class RecipeServiceImpl implements RecipeService {
         }
         return false;
     }
-
-
 
     @Override
     @Nullable
