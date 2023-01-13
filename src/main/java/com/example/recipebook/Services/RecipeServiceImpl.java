@@ -29,8 +29,13 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     @Nullable
     public Recipe createRecipe(Recipe recipe) {
-        recipes.put(recipeId++, recipe);
-        saveFile();
+        if (!recipes.containsKey(recipeId)) {
+            recipes.put(recipeId++, recipe);
+            saveFile();
+            return recipe;
+        }
+        recipeId++;
+        createRecipe(recipe);
         return recipe;
     }
 

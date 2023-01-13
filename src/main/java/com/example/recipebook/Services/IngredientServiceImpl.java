@@ -30,8 +30,13 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     @Nullable
     public Ingredient addIngredient(Ingredient ingredient) {
-        ingredients.put(ingredientId++, ingredient);
-        saveFile();
+        if (!ingredients.containsKey(ingredientId)) {
+            ingredients.put(ingredientId++, ingredient);
+            saveFile();
+            return ingredient;
+        }
+        ingredientId++;
+        addIngredient(ingredient);
         return ingredient;
     }
 

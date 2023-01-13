@@ -2,9 +2,7 @@ package com.example.recipebook.Services;
 
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.File;
 
 @Service
 public interface FileRecipeService {
@@ -14,4 +12,6 @@ public interface FileRecipeService {
     String readFileRecipe();
 
     boolean cleanDataFileRecipe();
+
+    File getDataFile();
 }
