@@ -45,7 +45,7 @@ public class FilesIngredientController {
         File file2 = fileIngredientService.getDataFile();
         try (FileOutputStream fileOutputStream = new FileOutputStream(file2)) {
             IOUtils.copy(file.getInputStream(), fileOutputStream);
-            ResponseEntity.ok().build();
+           return ResponseEntity.ok().build();
         } catch (IOException e) {
             e.printStackTrace();
         }
