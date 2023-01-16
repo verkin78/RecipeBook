@@ -101,12 +101,12 @@ public class RecipeServiceImpl implements RecipeService {
     public Path CreateRecipeTextFile(Long recipeId) throws IOException {
         Path path = fileRecipeService.CreateTempFile("RecipeFile");
         try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)){
-            writer.append(recipes.get(recipeId).getName() + "\n" +
-                    recipes.get(recipeId).getCookingTime().toString() + "\n" +
+            writer.append(recipes.get(recipeId).getRecipeName() + "\n" +
+                    recipes.get(recipeId).getKookTime().toString() + "\n" +
                     "Ингредиенты:" + "\n" +
                     recipes.get(recipeId).getIngredients() + "\n" +
                     "Инструкция приготовления: " + "\n" +
-                    recipes.get(recipeId).getSteps() + "\n");
+                    recipes.get(recipeId).getIngredients() + "\n");
         }
         return path;
     }

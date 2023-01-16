@@ -6,8 +6,16 @@ import com.example.recipebook.Services.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @RestController
 @Tag(name = "Рецепты", description = "действия, относящиеся к работе с рецептами")
@@ -62,5 +70,43 @@ public class RecipeController {
             description = "Найдены следующие рецепты")
     public ResponseEntity changeRecipe(@PathVariable Long recipeId, @RequestBody Recipe recipe) {
         return ResponseEntity.ok(recipeService.changeRecipeById(recipeId, recipe));
+    }
+
+    @GetMapping("/download/{id}")
+    @Operation(description = "Загрузка рецепта по id")
+    @ApiResponse(responseCode = "200",
+            description = "Successfully")
+    public  ResponseEntity downloadRecipeById(@PathVariable Long id) {
+        try {
+            Path path = recipeService.CreateRecipeTextFile(id);
+            InputStreamResource inputStream = new InputStreamResource(new FileInputStream(path.toFile()));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"Recipe.doc\"")
+                    .contentLength(Files.size(path))
+                    .body(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+    }
+
+    @GetMapping("/download/all")
+    @Operation(description = "Загрузка всех рецептов")
+    @ApiResponse(responseCode = "200",
+            description = "Successfully")
+    public  ResponseEntity downloadAllRecipes() {
+        try {
+            Path path = recipeService.CreateRecipeTextFileAll();
+            InputStreamResource inputStream = new InputStreamResource(new FileInputStream(path.toFile()));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.TEXT_PLAIN)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"AllRecipes.doc\"")
+                    .contentLength(Files.size(path))
+                    .body(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 }

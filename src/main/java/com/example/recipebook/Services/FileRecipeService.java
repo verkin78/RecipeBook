@@ -3,6 +3,7 @@ package com.example.recipebook.Services;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
+import java.nio.file.Path;
 
 @Service
 public interface FileRecipeService {
@@ -14,4 +15,6 @@ public interface FileRecipeService {
     boolean cleanDataFileRecipe();
 
     File getDataFile();
+
+    Path CreateTempFile(String suffix);
 }
