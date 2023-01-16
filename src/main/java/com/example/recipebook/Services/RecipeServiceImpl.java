@@ -8,6 +8,11 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -73,8 +78,6 @@ public class RecipeServiceImpl implements RecipeService {
         return new HashMap<>(recipes);
     }
 
-
-
     public void saveFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(recipes);
@@ -85,7 +88,6 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     private void readToFile() {
-
         try {
             String json = fileRecipeService.readFileRecipe();
             recipes = new ObjectMapper().readValue(json, new TypeReference<Map<Long, Recipe>>() {
@@ -93,5 +95,28 @@ public class RecipeServiceImpl implements RecipeService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public Path CreateRecipeTextFile(Long recipeId) throws IOException {
+        Path path = fileRecipeService.CreateTempFile("RecipeFile");
+        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)){
+            writer.append(recipes.get(recipeId).getName() + "\n" +
+                    recipes.get(recipeId).getCookingTime().toString() + "\n" +
+                    "Ингредиенты:" + "\n" +
+                    recipes.get(recipeId).getIngredients() + "\n" +
+                    "Инструкция приготовления: " + "\n" +
+                    recipes.get(recipeId).getSteps() + "\n");
+        }
+        return path;
+    }
+
+    @Override
+    public Path CreateRecipeTextFileAll() throws IOException {
+        Path path = fileRecipeService.CreateTempFile("RecipeFiles");
+        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)){
+            writer.append(recipes.toString());
+        }
+        return path;
     }
 }
